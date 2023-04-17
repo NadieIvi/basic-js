@@ -9,15 +9,36 @@
 <body>
     <!-- <script src="./what-season.js"></script> -->
     <script>
-     function getSumOfDigits(n) {
-        let number = n.toString().split('').reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
-        if(number.toString().length > 1){
-            return getSumOfDigits(number);
-        }else{
-            return number;
+function minesweeper(matrix) {
+  let accum = 0;
+  function getSquareRowBombs(arr, indexes){
+      return indexes.reduce((accumulator, i) => {
+        return arr[i] === true ? ++accumulator : accumulator
+      }, 0);
+  }
+  let bombMatrix = JSON.parse(JSON.stringify(matrix));
+  for(let i = 0; i < matrix.length; i++){
+    for(let j = 0; j < matrix[i].length; j++){
+        let bombs = 0;
+        for(let squareRow = i-1; squareRow <= i+1; squareRow++){
+          if(Array.isArray(matrix[squareRow])){
+            if(squareRow != i){
+              bombs += getSquareRowBombs(matrix[squareRow], [j-1,j,j+1]);
+            }else{
+               bombs += getSquareRowBombs(matrix[squareRow], [j-1,j+1]);
+            }
+          }
         }
+        bombMatrix[i][j] = bombs;
     }
-    console.log(getSumOfDigits(91))       
+  }
+  return bombMatrix;
+}
+    console.log(minesweeper([
+        [true, false, false],
+        [false, true, false],
+        [false, false, false],
+      ]))       
     </script>
 </body>
 </html>
