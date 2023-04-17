@@ -24,7 +24,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  * ]
  */
 function minesweeper(matrix) {
-  let accum = 0;
   function getSquareRowBombs(arr, indexes){
       return indexes.reduce((accumulator, i) => {
         return arr[i] === true ? ++accumulator : accumulator

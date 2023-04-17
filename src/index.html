@@ -9,36 +9,10 @@
 <body>
     <!-- <script src="./what-season.js"></script> -->
     <script>
-function minesweeper(matrix) {
-  let accum = 0;
-  function getSquareRowBombs(arr, indexes){
-      return indexes.reduce((accumulator, i) => {
-        return arr[i] === true ? ++accumulator : accumulator
-      }, 0);
-  }
-  let bombMatrix = JSON.parse(JSON.stringify(matrix));
-  for(let i = 0; i < matrix.length; i++){
-    for(let j = 0; j < matrix[i].length; j++){
-        let bombs = 0;
-        for(let squareRow = i-1; squareRow <= i+1; squareRow++){
-          if(Array.isArray(matrix[squareRow])){
-            if(squareRow != i){
-              bombs += getSquareRowBombs(matrix[squareRow], [j-1,j,j+1]);
-            }else{
-               bombs += getSquareRowBombs(matrix[squareRow], [j-1,j+1]);
-            }
-          }
-        }
-        bombMatrix[i][j] = bombs;
-    }
-  }
-  return bombMatrix;
+function isMAC48Address(n) {
+    return n.split('-').length != 6 && n.split('-').every(macPart => /[0-9A-F]{2}$/i.test(macPart));
 }
-    console.log(minesweeper([
-        [true, false, false],
-        [false, true, false],
-        [false, false, false],
-      ]))       
+    console.log(isMAC48Address('00-1B-63-84-45-E6'))       
     </script>
 </body>
 </html>
