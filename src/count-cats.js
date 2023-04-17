@@ -33,11 +33,11 @@ function countCats(matrix) {
   
 }
 
-countCats([
-  [0, 1, '^^'],
-  [0, '^^', 2],
-  ['^^', 1, 2]
-]);
+// countCats([
+//   [0, 1, '^^'],
+//   [0, '^^', 2],
+//   ['^^', 1, 2]
+// ]);
 
 module.exports = {
   countCats

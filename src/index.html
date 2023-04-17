@@ -3,12 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <!-- <script src="./what-season.js"></script> -->
+    <script>
+        function getSeason(date) {
+            let season = 'winter';
+            if (date === undefined) {
+                return 'Unable to determine the time of year!';
+            } else if (Object.prototype.toString.call(date) === "[object Date]") {
+                try{
+                    if(!isNaN(date) && !date.valueOf){
+                        let month = date.getMonth()+1;
+                        if (month > 2 && month < 6) {
+                            season = 'spring';
+                        } else if (month > 5 && month < 9){
+                            season = 'summer';
+                        } else if (month > 8 && month < 12){
+                            season = 'autumn';
+                        }
+                    }
+                }catch(e){
+                    throw new Error('Invalid date!');
+                }
+            } else {
+                throw new Error('Invalid date!');
+            }
+            return season;
+        }
+         const deeperFakeDate = {
+                toString() {
+                    return Date.prototype.toString.call(new Date());
+                },
+                getMonth() {
+                    return Date.prototype.getMonth.call(new Date());
+                },
+                getFullYear() {
+                    return Date.prototype.getFullYear.call(new Date(1994, 1, 2, 3, 4, 5));
+                },
+                getDate() {
+                    return Date.prototype.getDate.call(new Date(2020, 0, 3, 4, 5, 6));
+                },
+                getHours() {
+                    return Date.prototype.getHours.call(new Date(1978, 2, 4, 5, 6, 7));
+                },
+                getMinutes() {
+                    return Date.prototype.getMinutes.call(new Date(202, 3, 5, 6, 7, 8));
+                },
+                getSeconds() {
+                    return Date.prototype.getSeconds.call(new Date(1, 4, 6, 7, 8, 9));
+                },
+                getMilliseconds() {
+                    return Date.prototype.getMilliseconds.call(new Date(2019, 7, 8, 9, 10, 11));
+                },
+                getDay() {
+                    return Date.prototype.getDay.call(new Date(1812, 8, 9, 10, 11, 12));
+                },
+                [Symbol.toStringTag]: 'Date'
+            };
 
-<h1>Hello world</h1>
-    <script src="./common-character-count.js"></script>
+            Object.setPrototypeOf(deeperFakeDate, Object.getPrototypeOf(new Date()));
+        getSeason(deeperFakeDate);
+    </script>
 </body>
 </html>

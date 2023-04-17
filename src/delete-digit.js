@@ -17,7 +17,6 @@ function deleteDigit(n) {
   return Math.max(...s.map((el,i)=>{let r = s.slice(); r.splice(i,1); return Number( r.join(''))}))
 }
 
-
 module.exports = {
   deleteDigit
 };

@@ -23,8 +23,8 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function getDNSStats(domains) {
-  // throw new NotImplementedError('Not implemented');
-  let object={};
+  throw new NotImplementedError('Not implemented');
+  // let object={};
 
 }
 
