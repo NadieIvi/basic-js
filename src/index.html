@@ -9,10 +9,14 @@
 <body>
     <!-- <script src="./what-season.js"></script> -->
     <script>
-function isMAC48Address(n) {
-    return n.split('-').length != 6 && n.split('-').every(macPart => /[0-9A-F]{2}$/i.test(macPart));
+function createDreamTeam(members) {
+  return members.filter(member => typeof member === 'string')
+      .map(member => member.trim())
+      .map(member => member[0])
+      .sort((a,b) => b - a)
+      .join('');
 }
-    console.log(isMAC48Address('00-1B-63-84-45-E6'))       
+    console.log(createDreamTeam(['Peter', 'Adam', 'Gary', 'Bobby', 'Philip', 'Andrea', 'Evelyn', 'Evelyn', 'Kimberly', 'Denise']))       
     </script>
 </body>
 </html>
