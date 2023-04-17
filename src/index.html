@@ -9,14 +9,29 @@
 <body>
     <!-- <script src="./what-season.js"></script> -->
     <script>
-function createDreamTeam(members) {
-  return members.filter(member => typeof member === 'string')
-      .map(member => member.trim())
-      .map(member => member[0])
-      .sort((a,b) => b - a)
-      .join('');
-}
-    console.log(createDreamTeam(['Peter', 'Adam', 'Gary', 'Bobby', 'Philip', 'Andrea', 'Evelyn', 'Evelyn', 'Kimberly', 'Denise']))       
+const chainMaker = {
+  chain: [],
+  getLength: () => {
+    return chainMaker.chain.length;
+  },
+  addLink: (value) => {
+    chainMaker.chain.push(value);
+    return chainMaker;
+  },
+  removeLink: (position) => {
+    if(position > 0 && position < chainMaker.chain.length)
+      chainMaker.chain.splice(position, 1);
+    return chainMaker;
+  },
+  reverseChain: () => {
+     chainMaker.chain.reverse();
+     return chainMaker;
+  },
+  finishChain: () => {
+    return chainMaker.chain.map(chainItem => `( ${chainItem} )`).join('~~');
+  }
+};
+    console.log(chainMaker.addLink(function () { }).addLink('2nd').addLink('3rd').removeLink(2).reverseChain().finishChain())       
     </script>
 </body>
 </html>
