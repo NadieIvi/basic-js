@@ -9,13 +9,15 @@
 <body>
     <!-- <script src="./what-season.js"></script> -->
     <script>
-        function sortByHeight(arr) {
-            let positiveArr = arr.filter(number => number != -1).sort((a,b) => {
-                return a-b;
-            });
-            return positiveArr;
+     function getSumOfDigits(n) {
+        let number = n.toString().split('').reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
+        if(number.toString().length > 1){
+            return getSumOfDigits(number);
+        }else{
+            return number;
         }
-        console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))       
+    }
+    console.log(getSumOfDigits(91))       
     </script>
 </body>
 </html>
